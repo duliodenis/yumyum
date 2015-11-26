@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var recipes = [Recipe]()
-
     
     // MARK: View Lifecycle
     
@@ -22,6 +22,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
     }
     
+    override func viewDidAppear(animated: Bool) {
+        fetchAndSetResults()
+        tableView.reloadData()
+    }
+    
+    // MARK: Core Data Fetch Request
+    
+    func fetchAndSetResults() {
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = app.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Recipe")
+        
+        do {
+            let results = try context.executeFetchRequest(fetchRequest)
+            self.recipes = results as! [Recipe]
+        } catch let error as NSError {
+            print(error.debugDescription)
+        }
+    }
     
     // MARK: Table View Delegate Functions
     

@@ -1,6 +1,8 @@
 # YumYum
 YumYum is your chef in your pocket. Its an iOS 9 Swift 2 app to keep track of your favorite recipes using Core Data for persistence.
 
+![](https://github.com/duliodenis/yumyum/blob/master/art/screenshot/yumyum.gif)
+
 ### Licensing
 YumYum is licensed under [the MIT License](https://github.com/duliodenis/yumyum/blob/master/LICENSE).
 
